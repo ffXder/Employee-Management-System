@@ -1,0 +1,36 @@
+# Backend (Spring Boot)
+ems-backend/target/
+ems-backend/.mvn/
+ems-backend/mvnw
+ems-backend/mvnw.cmd
+ems-backend/.idea/
+ems-backend/*.iml
+ems-backend/HELP.md
+
+# Frontend (React/Node)
+ems-frontend/node_modules/
+ems-frontend/build/
+ems-frontend/dist/
+ems-frontend/.env
+ems-frontend/.env.local
+
+# Database Config (IMPORTANT!)
+**/application.properties
+**/application.yml
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.iws
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Maven
+**/target/
