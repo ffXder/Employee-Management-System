@@ -33,4 +33,4 @@ Thumbs.db
 *.log
 
 # Maven
-**/target/
+**/target/ems-backend/src/main/resources/application.properties
