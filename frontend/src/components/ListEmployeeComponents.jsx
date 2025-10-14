@@ -1,47 +1,42 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import { listEmployess } from '../services/EmployeeService'
+import { useNavigate } from 'react-router-dom'
 
 const ListEmployeeComponents = () => {
 
-    //adding dummy data
-    const dummyData = [
-        {
-            "id": 1,
-            "firstName": "Fred",
-            "lastName": "James",
-            "email": "fredjames@gmail.com"
-        },
-        {
-            "id": 2,
-            "firstName": "Juan",
-            "lastName": "James",
-            "email": "juanjames@gmail.com"
-        },
-        {
-            "id": 3,
-            "firstName": "Lebron",
-            "lastName": "James",
-            "email": "lebronjames@gmail.com"
-        }
-    ]
+    const [employees, setEmployees] = useState([])
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        listEmployess().then((response) => {
+            setEmployees(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }, [])
+
+    function addNewEmployee(){
+        navigate('/add-employee')
+    }
 
   return (
-    <div>
-        <h2>List of Employess</h2>
-        <table>
+    <div className='container'>
+        <h2 className='text-center'>List of Employees</h2>
+        <button className='btn btn-primary' onClick={addNewEmployee}>Add Employee</button>
+        <table className='table table-hover'>
             <thead>
-                <th>
                     <tr>
-                        <th>Employee id</th>
+                        <th>Employee Id</th>
                         <th>Employee First Name</th>
                         <th>Employee Last Name</th>
                         <th>Employee Email address</th>
                     </tr>
-                </th>
             </thead>
             <tbody>
                 {
-                    //calls the dummyData
-                    dummyData.map(employee => 
+                    //calls the dummyData array
+                    employees.map(employee => 
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
                             <td>{employee.firstName}</td>
