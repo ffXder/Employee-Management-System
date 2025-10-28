@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { createEmployee } from '../services/EmployeeService'
+import React, {useState, useEffect} from 'react'
+import { createEmployee, getEmployee } from '../services/EmployeeService'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const EmployeeComponent = () => {
@@ -16,6 +16,21 @@ const EmployeeComponent = () => {
     })
     
     const navigate = useNavigate();
+
+    //This retrieve the information to the update page using useEffect
+    useEffect(() => {
+         
+        if(!id) return;
+
+        getEmployee(id).then((response) => {
+           setFirstName(response.data.firstName);
+           setLastName(response.data.lastName);
+           setEmail(response.data.email); 
+        }).catch(error => {
+            console.error(error);
+        })
+
+    }, [id])
 
     //saveEmployee function
     function saveEmployee(e){
