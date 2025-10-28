@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import { deleteEmployee, listEmployees } from '../services/EmployeeService'
 import { useNavigate } from 'react-router-dom'
+import './css/ListEmployeeComponents.css'
 
 const ListEmployeeComponents = () => {
 
@@ -33,7 +34,7 @@ const ListEmployeeComponents = () => {
         console.log(id);
 
         deleteEmployee(id).then((response) => {
-
+            getAllEmployees();
         }).catch(error => {
             console.error(error);
         })
@@ -64,7 +65,7 @@ const ListEmployeeComponents = () => {
                             <td>{employee.email}</td>
                             <td>
                                 <button className='btn btn-info' onClick={() => updateEmployee(employee.id)}>Update</button>
-                                <button className='btn btn-danger' onClick={()=> removeEmployee(employee.id)}>Delete</button>
+                                <button className='btn btn-danger' onClick={() => removeEmployee(employee.id)}>Delete</button>
                             </td>
                         </tr>
                     )
