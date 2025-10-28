@@ -21,7 +21,7 @@ const EmployeeComponent = () => {
         e.preventDefault();
         
         //this will validate the employee before saving employee to the database
-        if(validateForm){
+        if(validateForm()){
             const employee = {firstName, lastName, email}
             console.log(employee)
     
@@ -75,11 +75,14 @@ const EmployeeComponent = () => {
                             placeholder = 'Enter Employee First Name'
                             name = 'firstName'
                             value = {firstName}
-                            className='form-control'
+                            className={`form-control ${ errors.firstName ? 'is-invalid': '' }`} //if firstname contains error it will display the error
                             onChange={(e) => setFirstName(e.target.value)}
                         >
                         </input>
+                        {errors.firstName && <div className='invalid-feedback'> {errors.firstName} </div>}
+
                     </div>
+
                     {/* lastName input */}
                     <div className='form-group mb-2'>
                         <label className='form-label'>LastName:</label>
@@ -88,11 +91,14 @@ const EmployeeComponent = () => {
                             placeholder = 'Enter Employee Last Name'
                             name = 'lastName'
                             value = {lastName}
-                            className='form-control'
+                            className={`form-control ${ errors.lastName ? 'is-invalid': '' }`}
                             onChange={(e) => setLastName(e.target.value)}
                         >
                         </input>
+                        {errors.lastName && <div className='invalid-feedback'> {errors.lastName} </div>}
+
                     </div>
+
                     {/* email input */}
                     <div className='form-group mb-2'>
                         <label className='form-label'>Email:</label>
@@ -101,10 +107,12 @@ const EmployeeComponent = () => {
                             placeholder = 'Enter Employee Email'
                             name = 'Email'
                             value = {email}
-                            className='form-control'
+                            className={`form-control ${ errors.email ? 'is-invalid': '' }`}
                             onChange={(e) => setEmail(e.target.value)}
                         >
                         </input>
+                        {errors.email && <div className='invalid-feedback'> {errors.email} </div>}
+
                     </div>
 
                     <button className='btn btn-success' onClick={saveEmployee}>Submit</button>
