@@ -7,6 +7,12 @@ const EmployeeComponent = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
+
+    const [errors, setErrors] =useState({
+        firstName: '',
+        lastName: '',
+        email: ''
+    })
     
     const navigate = useNavigate();
 
@@ -14,14 +20,47 @@ const EmployeeComponent = () => {
     function saveEmployee(e){
         e.preventDefault();
         
-        const employee = {firstName, lastName, email}
-        console.log(employee)
-
-        createEmployee(employee).then((response) => {
-            console.log(response.data);
-            navigate('/employees')
-        })
+        //this will validate the employee before saving employee to the database
+        if(validateForm){
+            const employee = {firstName, lastName, email}
+            console.log(employee)
+    
+            createEmployee(employee).then((response) => {
+                console.log(response.data);
+                navigate('/employees')
+            })
+        }
     }
+
+    //validate employee function
+    function validateForm(){
+        let valid = true;
+
+        const errorsCopy = {... errors}
+
+        if(firstName.trim()){
+            errorsCopy.firstName = '';
+        } else {
+            errorsCopy.firstName = 'First name is required'
+        }
+
+        if(lastName.trim()){
+            errorsCopy.lastName = '';
+        } else {
+            errorsCopy.lastName = 'Last name is required';
+        }
+
+        if(email.trim()){
+            errorsCopy.email = '';
+        } else {
+            errorsCopy.email = 'Email is required';
+        }
+
+        setErrors(errorsCopy)
+
+        return valid;
+    }
+
   return (
     <div className='container'>
         <div className='card col-md-6 offset-md-3 offset-md-2'>
