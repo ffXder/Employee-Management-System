@@ -30,8 +30,8 @@ This is a **Java Full-Stack Web Application** using:
 ## Setup
 ### Clone Repository
 ```bash
-git clone https://github.com/yourusername/employee-management-system.git
-cd employee-management-system
+git clone https://github.com/ffXder/Employee-Management-System.git
+cd Employee-Management-System
 ```
 
 ### Database Setup
